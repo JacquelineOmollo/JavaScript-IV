@@ -24,8 +24,9 @@ class GameObject {
   * takeDamage() // prototype method -> returns the string '<object name> took damage.'
   * should inherit destroy() from GameObject's prototype
 */
-class CharacterStats {
+class CharacterStats extends GameObject {
   constructor(videoCharacters) {
+    super(videoCharacters);
     this.healthPoints = videoCharacters.healthPoints;
     //  GameObject.call(this, videoCharacters);
   }
@@ -44,8 +45,9 @@ class CharacterStats {
   * should inherit destroy() from GameObject through CharacterStats
   * should inherit takeDamage() from CharacterStats
 */
-class Humanoid {
+class Humanoid extends CharacterStats {
   constructor(human) {
+    super(human);
     this.team = human.team;
     this.weapons = human.weapons;
     this.language = human.language;
