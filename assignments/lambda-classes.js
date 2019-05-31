@@ -1,33 +1,54 @@
 class Person {
-  constructor(name, age, location) {
-    this.name = name;
-    this.age = age;
-    this.location = location;
+  constructor(attributes) {
+    this.name = attributes.name;
+    this.age = attributes.age;
+    this.location = attributes.location;
   }
   speak() {
-    return `hello my name is ${name}, I am from ${location}.`;
+    return `hello my name is ${this.name}, I am from ${this.location}.`;
   }
 }
 
-class Instructor {
-  constructor(attributes) {
-    this.specialty = attributes.specialty;
-    this.subject = attributes.favLanguage;
-    this.catchPhrase = attributes.catchPhrase;
+class Instructor extends Person {
+  constructor(instructorAttributes) {
+    super(instructorAttributes);
+    this.specialty = instructorAttributes.specialty;
+    this.catchPhrase = instructorAttributes.catchPhrase;
+    this.favLanguage = instructorAttributes.favLanguage;
   }
   demo() {
     return `Today we are learning about ${subject}.`;
   }
-  grade() {
+  grade(student, subject) {
     return `${student.name} receives a perfect score on ${subject}`;
   }
 }
 
-class Student extends Person {
-  constructor(attributes) {
-    super(attributes);
-    this.previousBackground = attributes.previousBackground;
-    this.className = attributes.className;
-    this.favSubjects = attributes.favSubjects;
+class Student extends Instructor {
+  constructor(studentAttributes) {
+    super(studentAttributes);
+    this.previousBackground = studentAttributes.previousBackground;
+    this.className = studentAttributes.className;
+    this.favSubjects = studentAttributes.favSubjects;
+  }
+
+  listsSubjects() {
+    return `The topic I like learning the most so far at Lambda is ${
+      this.favSubjects
+    }. `;
+  }
+
+  PRAssignment() {
+    return `${student.name} has submitted a PR for {subject}`;
+  }
+
+  sprintChallenge() {
+    return `${student.name} has begun sprint challenge on {subject}.`;
   }
 }
+
+const mary = new Instructor({
+  name: "Mary",
+  location: "New York",
+  age: 40
+});
